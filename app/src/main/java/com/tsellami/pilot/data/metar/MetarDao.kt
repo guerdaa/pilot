@@ -22,7 +22,7 @@ interface MetarDao {
     @Query("DELETE FROM metar_table")
     suspend fun deleteAllMetarData()
 
-    @Query("DELETE FROM metar_table WHERE retrievingTime < :timestamp")
+    @Query("DELETE FROM metar_table WHERE retrievingTime < :timestamp AND icao IN (SELECT icao FROM airport WHERE favorite = 0)")
     suspend fun deleteInvalidMetarData(timestamp: Long)
 
     @Query("SELECT * FROM airport INNER JOIN metar_table ON airport.icao = metar_table.icao WHERE favorite = 1 AND retrievingTime < :timestamp")

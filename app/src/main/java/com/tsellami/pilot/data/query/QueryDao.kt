@@ -8,7 +8,7 @@ import androidx.room.Query
 @Dao
 interface QueryDao {
 
-    @Query("SELECT * FROM query_table WHERE search = :search")
+    @Query("SELECT * FROM query_table WHERE Upper(search) = Upper(:search)")
     suspend fun getAirportNameByQuery(search: String): QueryData?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

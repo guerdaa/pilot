@@ -8,6 +8,10 @@ import com.tsellami.pilot.data.metar.MetarDao
 import com.tsellami.pilot.data.query.QueryDao
 import com.tsellami.pilot.network.airport.AirportApi
 import com.tsellami.pilot.network.metar.MetarApi
+import com.tsellami.pilot.repository.AirportRepository
+import com.tsellami.pilot.repository.MetarDataRepository
+import com.tsellami.pilot.repository.api.IAirportRepository
+import com.tsellami.pilot.repository.api.IMetarDataRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -58,6 +62,21 @@ class AppModule {
     @Provides
     fun provideQueryDao(database: PilotDatabase): QueryDao =
         database.queryDao()
+
+    @Singleton
+    @Provides
+    fun provideAirportRepository(
+        airportDao: AirportDao,
+        airportApi: AirportApi,
+        queryDao: QueryDao
+    ): IAirportRepository = AirportRepository(airportDao, airportApi, queryDao)
+
+   @Singleton
+   @Provides
+   fun provideMetarDataRepository(
+       metarDao: MetarDao,
+       metarApi: MetarApi
+   ): IMetarDataRepository = MetarDataRepository(metarDao, metarApi)
 
     companion object {
         private const val AIRPORT_DATABASE = "airport_database"

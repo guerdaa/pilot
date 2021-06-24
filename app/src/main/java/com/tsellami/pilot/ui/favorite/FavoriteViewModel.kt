@@ -1,10 +1,9 @@
 package com.tsellami.pilot.ui.favorite
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tsellami.pilot.data.airport.Airport
-import com.tsellami.pilot.repository.AirportRepository
+import com.tsellami.pilot.repository.api.IAirportRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -13,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FavoriteViewModel @Inject constructor(
-    private val airportRepository: AirportRepository
+    private val airportRepository: IAirportRepository
 ) : ViewModel() {
 
     private val channel = Channel<FavoriteEvents>()
