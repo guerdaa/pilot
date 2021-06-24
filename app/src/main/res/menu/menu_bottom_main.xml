@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/metarFragment"
+        android:icon="@drawable/ic_metar"
+        android:title="@string/metar"/>
+
+    <item android:id="@+id/favoriteFragment"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/favorite"/>
+</menu>

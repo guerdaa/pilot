@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/metarFragment">
+
+    <fragment
+        android:id="@+id/metarFragment"
+        android:name="com.tsellami.pilot.ui.metar.MetarFragment"
+        android:label="Weather Condition"
+        tools:layout="@layout/metar_fragment" >
+        <argument
+            android:name="icao"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.tsellami.pilot.ui.favorite.FavoriteFragment"
+        android:label="Favorites"
+        tools:layout="@layout/favorite_fragment" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_metarFragment"
+            app:destination="@id/metarFragment" />
+    </fragment>
+</navigation>

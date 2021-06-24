@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Pilot</string>
+    <string name="search">Search</string>
+    <string name="no_airport_found">No airport found</string>
+    <string name="please_check_again">Please check again</string>
+    <string name="look_for_the_flight_weather">Look for the flight weather</string>
+    <string name="by_providing_the_icao_code_or_the_airport_s_name">by providing the ICAO code or the airport\'s name</string>
+    <string name="error_occured">Error occurred</string>
+    <string name="retry">retry</string>
+    <string name="metar">Metar</string>
+    <string name="favorite">Favorite</string>
+    <string name="no_favorites">No favorites available</string>
+    <string name="update_failed">Failed to update favorites</string>
+</resources>
