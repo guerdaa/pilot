@@ -1,19 +1,19 @@
 package com.tsellami.pilot.ui.metar
 
 import android.os.Bundle
-import android.util.Log
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tsellami.pilot.R
 import com.tsellami.pilot.databinding.MetarFragmentBinding
 import com.tsellami.pilot.ui.adapter.MetarDataAdapter
+import com.tsellami.pilot.utils.exhaustive
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -23,7 +23,6 @@ class MetarFragment : Fragment(R.layout.metar_fragment) {
     private val viewModel: MetarViewModel by viewModels()
     private var binding: MetarFragmentBinding? = null
     private val args: MetarFragmentArgs by navArgs()
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,8 +34,6 @@ class MetarFragment : Fragment(R.layout.metar_fragment) {
         })
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.setInitialData(args.icao)
-        }
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.queryEvent.collect { event ->
                 when (event) {
                     is MetarViewModel.QueryEvent.NotStarted -> {
@@ -46,7 +43,8 @@ class MetarFragment : Fragment(R.layout.metar_fragment) {
                             loadingView.visibility = View.GONE
                             retry.visibility = View.GONE
                             bigTitle.text = getString(R.string.look_for_the_flight_weather)
-                            smallTitle.text = getString(R.string.by_providing_the_icao_code_or_the_airport_s_name)
+                            smallTitle.text =
+                                getString(R.string.by_providing_the_icao_code_or_the_airport_s_name)
                             screenImage.setImageResource(R.drawable.ic_starting_screen)
                         }
                     }
@@ -94,7 +92,7 @@ class MetarFragment : Fragment(R.layout.metar_fragment) {
                             screenImage.setImageResource(R.drawable.ic_error)
                         }
                     }
-                }
+                }.exhaustive
             }
         }
         binding?.apply {
@@ -130,6 +128,7 @@ class MetarFragment : Fragment(R.layout.metar_fragment) {
                 }
                 return true
             }
+
             override fun onQueryTextChange(newText: String?): Boolean = true
         })
     }

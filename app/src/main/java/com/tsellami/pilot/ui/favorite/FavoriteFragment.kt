@@ -12,6 +12,7 @@ import com.tsellami.pilot.R
 import com.tsellami.pilot.data.airport.Airport
 import com.tsellami.pilot.databinding.FavoriteFragmentBinding
 import com.tsellami.pilot.ui.adapter.FavoriteAdapter
+import com.tsellami.pilot.utils.exhaustive
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -28,7 +29,7 @@ class FavoriteFragment : Fragment(R.layout.favorite_fragment), FavoriteAdapter.O
         favoriteAdapter = FavoriteAdapter(this)
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.favoriteEvent.collect { event ->
-                when(event) {
+                when (event) {
                     is FavoriteViewModel.FavoriteEvents.Loading -> {
                         binding?.apply {
                             loadingView.visibility = View.VISIBLE
@@ -55,7 +56,7 @@ class FavoriteFragment : Fragment(R.layout.favorite_fragment), FavoriteAdapter.O
                             emptyFavorites.visibility = View.VISIBLE
                         }
                     }
-                }
+                }.exhaustive
             }
         }
     }
