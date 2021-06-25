@@ -1,6 +1,5 @@
 package com.tsellami.pilot.repository
 
-import android.util.Log
 import com.tsellami.pilot.data.airport.Airport
 import com.tsellami.pilot.data.airport.AirportDao
 import com.tsellami.pilot.data.query.QueryDao
@@ -9,7 +8,6 @@ import com.tsellami.pilot.network.airport.AirportApi
 import com.tsellami.pilot.network.airport.AirportDto
 import com.tsellami.pilot.repository.api.IAirportRepository
 import com.tsellami.pilot.utils.Utils
-import javax.inject.Inject
 
 class AirportRepository(
     private val airportDao: AirportDao,

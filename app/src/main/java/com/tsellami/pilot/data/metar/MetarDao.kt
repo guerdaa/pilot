@@ -1,8 +1,6 @@
 package com.tsellami.pilot.data.metar
 
 import androidx.room.*
-import com.tsellami.pilot.data.airport.Airport
-import java.util.concurrent.Flow
 
 @Dao
 interface MetarDao {

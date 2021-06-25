@@ -1,7 +1,6 @@
 package com.tsellami.pilot.ui.favorite
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels

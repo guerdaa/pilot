@@ -1,14 +1,7 @@
-package com.tsellami.pilot
+package com.tsellami.pilot.ui
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.Network
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
@@ -16,6 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.snackbar.Snackbar
+import com.tsellami.pilot.R
 import com.tsellami.pilot.databinding.ActivityMainBinding
 import com.tsellami.pilot.repository.api.IMetarDataRepository
 import com.tsellami.pilot.utils.exhaustive

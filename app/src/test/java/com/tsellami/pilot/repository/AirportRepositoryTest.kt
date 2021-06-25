@@ -10,7 +10,6 @@ import com.tsellami.pilot.network.airport.AirportResponse
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
-import io.mockk.verify
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Before

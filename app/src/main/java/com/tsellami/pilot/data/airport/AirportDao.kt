@@ -1,7 +1,6 @@
 package com.tsellami.pilot.data.airport
 
 import androidx.room.*
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface AirportDao {

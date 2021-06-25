@@ -1,10 +1,8 @@
-package com.tsellami.pilot
+package com.tsellami.pilot.ui
 
-import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tsellami.pilot.repository.api.IMetarDataRepository
