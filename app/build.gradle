@@ -20,7 +20,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "RAPID_API_KEY", "\"2cd94b811cmsh90eb15704380aa2p1844b9jsncb22353418ff\""
+        buildConfigField "String", "RAPID_API_KEY", "\"85522a7d77mshf29eb4327cdf695p1ffe98jsnc224cd090e40\""
         buildConfigField "String", "RAPID_API_HOST", "\"aerodatabox.p.rapidapi.com\""
     }
 

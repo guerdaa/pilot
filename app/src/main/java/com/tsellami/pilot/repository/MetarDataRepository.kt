@@ -31,7 +31,7 @@ class MetarDataRepository(
     }
 
     override suspend fun deleteOldMetarData() {
-        metarDao.deleteInvalidMetarData(System.currentTimeMillis() - TimeUnit.MINUTES.toMillis(1))
+        metarDao.deleteInvalidMetarData(System.currentTimeMillis() - TimeUnit.HOURS.toMillis(7))
     }
 
     override suspend fun insertMetarData(metarData: MetarData) {
@@ -39,7 +39,7 @@ class MetarDataRepository(
     }
 
     override suspend fun updateOutdatedFavoriteMetarData() {
-        val outdatedMetar = metarDao.getOutdatedFavoriteMetarData(System.currentTimeMillis() - TimeUnit.MINUTES.toMillis(1))
+        val outdatedMetar = metarDao.getOutdatedFavoriteMetarData(System.currentTimeMillis() - TimeUnit.HOURS.toMillis(1))
         outdatedMetar.forEach {
             retrieveMetarDataRemotely(it.icao)
         }
