@@ -9,9 +9,9 @@ import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.rules.ActivityScenarioRule
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import androidx.test.rule.ActivityTestRule
-import androidx.test.runner.AndroidJUnit4
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.`is`
@@ -21,15 +21,14 @@ import org.hamcrest.core.IsInstanceOf
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.lang.Thread.sleep
+
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
 class FavoriteFragmentTest {
-
     @Rule
     @JvmField
-    var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
+    var activityScenario = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
     fun favoriteFragmentTest() {
@@ -83,7 +82,28 @@ class FavoriteFragmentTest {
             )
         )
         searchAutoComplete2.perform(pressImeActionButton())
-        sleep(3000)
+
+        Thread.sleep(3000)
+
+
+        val textView = onView(
+            allOf(
+                withId(R.id.airport_name), withText("Berlin, Berlin-Tegel"),
+                withParent(withParent(IsInstanceOf.instanceOf(android.widget.LinearLayout::class.java))),
+                isDisplayed()
+            )
+        )
+        textView.check(matches(withText("Berlin, Berlin-Tegel")))
+
+        val textView2 = onView(
+            allOf(
+                withId(R.id.airport_icao), withText("EDDT"),
+                withParent(withParent(IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java))),
+                isDisplayed()
+            )
+        )
+        textView2.check(matches(withText("EDDT")))
+
         val appCompatImageView = onView(
             allOf(
                 withId(R.id.favorite_image_view),
@@ -113,25 +133,26 @@ class FavoriteFragmentTest {
             )
         )
         bottomNavigationItemView.perform(click())
-        sleep(1000)
-        val textView = onView(
+
+        Thread.sleep(1000)
+
+        val textView3 = onView(
             allOf(
                 withId(R.id.airport_name), withText("Berlin, Berlin-Tegel"),
                 withParent(withParent(IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java))),
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("Berlin, Berlin-Tegel")))
+        textView3.check(matches(withText("Berlin, Berlin-Tegel")))
 
-        val textView2 = onView(
+        val textView4 = onView(
             allOf(
                 withId(R.id.airport_icao), withText("EDDT"),
                 withParent(withParent(IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java))),
                 isDisplayed()
             )
         )
-        textView2.check(matches(withText("EDDT")))
-
+        textView4.check(matches(withText("EDDT")))
 
         val recyclerView = onView(
             allOf(
@@ -143,24 +164,65 @@ class FavoriteFragmentTest {
             )
         )
         recyclerView.perform(actionOnItemAtPosition<ViewHolder>(0, click()))
-        sleep(1000)
-        val textView4 = onView(
+
+        Thread.sleep(1000)
+
+        val textView5 = onView(
             allOf(
                 withId(R.id.airport_name), withText("Berlin, Berlin-Tegel"),
                 withParent(withParent(IsInstanceOf.instanceOf(android.widget.LinearLayout::class.java))),
                 isDisplayed()
             )
         )
-        textView4.check(matches(withText("Berlin, Berlin-Tegel")))
+        textView5.check(matches(withText("Berlin, Berlin-Tegel")))
 
-        val textView5 = onView(
+        val textView6 = onView(
             allOf(
                 withId(R.id.airport_icao), withText("EDDT"),
                 withParent(withParent(IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java))),
                 isDisplayed()
             )
         )
-        textView5.check(matches(withText("EDDT")))
+        textView6.check(matches(withText("EDDT")))
+
+        val appCompatImageView2 = onView(
+            allOf(
+                withId(R.id.favorite_image_view),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.LinearLayout")),
+                        0
+                    ),
+                    1
+                ),
+                isDisplayed()
+            )
+        )
+        appCompatImageView2.perform(click())
+
+        val bottomNavigationItemView2 = onView(
+            allOf(
+                withId(R.id.favoriteFragment), withContentDescription("Favorite"),
+                childAtPosition(
+                    childAtPosition(
+                        withId(R.id.bottom_navigation),
+                        0
+                    ),
+                    1
+                ),
+                isDisplayed()
+            )
+        )
+        bottomNavigationItemView2.perform(click())
+
+        val textView7 = onView(
+            allOf(
+                withId(R.id.empty_favorites), withText("No favorites available"),
+                withParent(withParent(withId(R.id.fragment_container))),
+                isDisplayed()
+            )
+        )
+        textView7.check(matches(withText("No favorites available")))
     }
 
     private fun childAtPosition(

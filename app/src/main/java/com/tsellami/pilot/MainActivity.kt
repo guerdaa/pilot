@@ -1,6 +1,14 @@
 package com.tsellami.pilot
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.Network
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
@@ -10,12 +18,15 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.snackbar.Snackbar
 import com.tsellami.pilot.databinding.ActivityMainBinding
 import com.tsellami.pilot.repository.api.IMetarDataRepository
+import com.tsellami.pilot.utils.exhaustive
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private val viewModel: MainViewModel by viewModels()
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
@@ -34,13 +45,16 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.bottomNavigation.setupWithNavController(navController)
+        viewModel.updateCacheOnNetworkAvailable()
+
         lifecycleScope.launchWhenCreated {
-            try {
-                metarDataRepository.updateOutdatedFavoriteMetarData()
-            } catch (e: Exception) {
-                Snackbar.make(binding.root, getString(R.string.update_failed), Snackbar.LENGTH_SHORT).show()
+            viewModel.event.collect { event ->
+                when(event) {
+                    is MainViewModel.OnlineUpdatingEvent.UpdatingFailed -> {
+                        Snackbar.make(binding.root, "Updating offline data failed", Snackbar.LENGTH_SHORT).show()
+                    }
+                }.exhaustive
             }
-            metarDataRepository.deleteOldMetarData()
         }
     }
 }

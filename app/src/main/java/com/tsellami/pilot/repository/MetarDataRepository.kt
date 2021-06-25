@@ -1,12 +1,10 @@
 package com.tsellami.pilot.repository
 
-import android.util.Log
 import com.tsellami.pilot.data.metar.MetarDao
 import com.tsellami.pilot.data.metar.MetarData
 import com.tsellami.pilot.network.metar.MetarApi
 import com.tsellami.pilot.repository.api.IMetarDataRepository
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
 class MetarDataRepository(
     private val metarDao: MetarDao,

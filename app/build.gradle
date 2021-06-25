@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId "com.tsellami.pilot"
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -44,39 +44,44 @@ android {
 
 dependencies {
 
-    implementation 'com.google.dagger:hilt-android:2.37'
+    implementation "com.google.dagger:hilt-android:$hiltVersion"
+    kapt "com.google.dagger:hilt-compiler:$hiltVersion"
+
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
-    implementation 'com.google.android.material:material:1.4.0-rc01'
-    androidTestImplementation 'androidx.test:rules:1.4.0-beta02'
-    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.4.0-rc01'
-    kapt 'com.google.dagger:hilt-compiler:2.37'
-    implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
-    implementation "com.airbnb.android:lottie:3.7.0"
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0'
-    implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
-    implementation "androidx.room:room-runtime:2.4.0-alpha03"
-    kapt "androidx.room:room-compiler:2.4.0-alpha03"
-    implementation "androidx.room:room-ktx:2.4.0-alpha03"
-    implementation "androidx.paging:paging-runtime-ktx:3.1.0-alpha01"
-    implementation 'androidx.fragment:fragment-ktx:1.3.5'
-    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.4.0-alpha02"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$androidXLifecyclerVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidXLifecyclerVersion"
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+
+    implementation "com.google.android.material:material:$googleMaterialVersion"
+
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofitScalars"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
+
+    implementation "androidx.room:room-runtime:$androidXRoomVersion"
+    kapt "androidx.room:room-compiler:$androidXRoomVersion"
+    implementation "androidx.room:room-ktx:$androidXRoomVersion"
+
+    implementation "androidx.paging:paging-runtime-ktx:$androidXPagingVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.5.0'
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
-    testImplementation "io.mockk:mockk:1.10.6"
+    implementation "androidx.core:core-ktx:$androidXCore"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$androidXCore"
+
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+
+    testImplementation "io.mockk:mockk:$mockkVersion"
     testImplementation 'junit:junit:4.+'
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2"
-    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinxCoroutinesTestVersion"
+    testImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
 
-    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$androidXRunnerVersion"
 }
